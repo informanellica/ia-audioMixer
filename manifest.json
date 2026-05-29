@@ -1,12 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Tab Volume Mixer",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Adjust volume for each browser tab individually",
   "permissions": [
     "tabCapture",
     "tabs",
-    "offscreen"
+    "offscreen",
+    "storage"
   ],
   "action": {
     "default_popup": "popup.html",
