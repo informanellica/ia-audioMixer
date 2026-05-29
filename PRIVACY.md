@@ -34,4 +34,4 @@ None of these are used to gather information about you.
 
 ## Contact
 
-Questions about this policy: https://informanellica.com
+Questions about this policy: support@informanellica.com
