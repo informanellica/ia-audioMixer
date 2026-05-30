@@ -189,73 +189,70 @@ function submissionDoc(cfg, listing) {
     .map((l) => `### ${LANG_NAME[l] || l} (${l})\n\n${cfg.desc[l] || cfg.desc.en}`)
     .join("\n\n");
 
-  return `# Submission — ${cfg.storeName} (v${cfg.version}) — step by step
+  return `# 提出ガイド — ${cfg.storeName}（v${cfg.version}）｜上から順に
 
-Follow top to bottom. The **Title** and **Summary** are taken automatically from
-the extension package (already localized into all ${langs.length} languages), so
-per language you only set the **Description** and upload the **localized
-screenshot**. Everything you need is in this folder (per-locale images in
-\`<lang>/\` subfolders).
+このフォルダだけで提出できます。**タイトルと概要は拡張機能パッケージから自動取得**され、
+全${langs.length}言語に翻訳済みです。そのため言語ごとに設定するのは**説明文**と
+**ローカライズ版スクリーンショット**だけです。画像は各言語の \`<lang>/\` サブフォルダにあります。
 
-## Step 0 — Before you start
-- Host the privacy policy and confirm the URL opens: ${cfg.privacy}
-  (text: \`privacy-policy.md\` in this folder)
-- Accounts: Chrome Web Store developer (\$5 one-time) / Edge Partner Center (free).
+## 手順0 — 事前準備
+- プライバシーポリシーを公開し、URLが開けることを確認: ${cfg.privacy}
+  （本文: このフォルダの \`privacy-policy.md\`）
+- アカウント: Chrome ウェブストア デベロッパー（初回 \$5）/ Edge Partner Center（無料）
 
-## Step 1 — Create the item & upload the package
-1. Chrome Web Store Developer Dashboard → **New item**.
-2. Upload \`../${cfg.zip}\`.
+## 手順1 — アイテム作成とパッケージのアップロード
+1. Chrome ウェブストア デベロッパー ダッシュボード → **「新しいアイテム」**
+2. \`../${cfg.zip}\` をアップロード
 
-## Step 2 — All-languages (default) assets  [required, once]
-Under **「全言語向けアセット」 / All-languages assets**:
-- Store icon (128×128): \`store-icon-128.png\`
-- All-languages screenshot (fallback for any language): \`en/screenshot-1280x800.png\`
-- Promo tile 440×280 (optional): \`en/promo-tile-440x280.png\`
-- Marquee 1400×560: skip
+## 手順2 — 全言語向けアセット（最初に1回）
+**「全言語向けアセット」**の欄に:
+- ショップアイコン（128×128）: \`store-icon-128.png\`
+- 全言語向けスクリーンショット（未対応言語のフォールバック）: \`en/screenshot-1280x800.png\`
+- プロモーションタイル 440×280（任意）: \`en/promo-tile-440x280.png\`
+- マーキー 1400×560: スキップ
 
-## Step 3 — Other fields (set once, 「すべての言語用」)
-- Category: ${cfg.category}
-- Homepage URL: ${cfg.homepage}
-- Support URL: ${cfg.support}
-- Mature content: **No**
-- Visibility: **Public**
+## 手順3 — 共通フィールド（「すべての言語用」を1回）
+- カテゴリ: ${cfg.category}
+- ホームページ URL: ${cfg.homepage}
+- サポート URL: ${cfg.support}
+- 成人向けコンテンツ: **いいえ**
+- 公開設定: **公開（Public）**
 
-## Step 4 — Per-language listing (repeat for each language)
-Switch **「編集中の言語」 / Editing language**, then for that language:
-1. Description: paste the text from Step 5 for that language.
-2. Localized screenshot (「ローカライズ版スクリーンショット」): upload that language's file.
-(Title & Summary fill in automatically.)
+## 手順4 — 言語ごとの掲載（各言語で繰り返す）
+**「編集中の言語」**を切り替え、その言語について:
+1. 説明: 手順5のその言語のテキストを貼り付け
+2. ローカライズ版スクリーンショット: その言語のファイルをアップロード
+（タイトル・概要は自動入力されます）
 
-| Language | Localized screenshot | Localized tile |
+| 言語 | ローカライズ版スクショ | ローカライズ版タイル |
 | --- | --- | --- |
 ${rows}
 
-Minimum: do **English + 日本語**. The other languages can be added anytime —
-until then those users see the auto-localized title/summary + the all-languages
-(English) screenshot.
+最低でも **英語（en）＋ 日本語（ja）**。他の言語は後から追加できます
+（それまでは自動翻訳のタイトル/概要 ＋ 全言語向け（英語）スクショが表示されます）。
 
-## Step 5 — Descriptions to paste (per language)
+## 手順5 — 貼り付け用の説明文（言語別）
 
 ${descs}
 
-## Step 6 — Privacy practices tab
-- Single purpose: ${cfg.singlePurpose}
-- Permissions in this build: ${cfg.perms} — justification wording is in the Appendix.
-- Uses remote code? **No**
-- Data collection: **none** → tick the 3 certifications (no selling, single-purpose only, not for creditworthiness)
-- Privacy policy URL: ${cfg.privacy}
+## 手順6 — プライバシー（Privacy practices タブ）
+- 単一目的（Single purpose）: ${cfg.singlePurpose}
+- この版の権限: ${cfg.perms}（正当化の文言は末尾の付録に）
+- リモートコードの使用: **なし（No）**
+- データ収集: **なし** → 3つの宣言にチェック（販売しない / 単一目的に限定 / 信用度評価に使わない）
+- プライバシーポリシー URL: ${cfg.privacy}
 
-## Step 7 — Submit
-Click **Submit for review**. Review takes hours–days (broad permissions take longer).
+## 手順7 — 提出
+**「審査のために送信」** をクリック。審査は数時間〜数日（広い権限ほど長め）。
 
-## Step 8 — Microsoft Edge Add-ons (same package)
-1. Partner Center → new extension → upload \`../${cfg.zip}\`.
-2. Reuse the same descriptions / screenshots / URLs above.
-3. Privacy: same policy URL, no data collected → **Publish**.
+## 手順8 — Microsoft Edge アドオン（同じパッケージ）
+1. Partner Center → 新規拡張機能 → \`../${cfg.zip}\` をアップロード
+2. 上記と同じ説明文・スクショ・URL を流用
+3. プライバシー: 同じポリシー URL、データ収集なし → **公開**
 
 ---
 
-## Appendix — EN/JA listing reference (summaries + permission justifications)
+## 付録 — 英語/日本語の掲載文リファレンス（概要・権限の正当化）
 
 ${listing}
 `;
