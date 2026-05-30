@@ -24,6 +24,11 @@ const CONFIG = {
   privacy: "https://informanellica.github.io/ia-audioMixer/PRIVACY",
   category: "Productivity / 仕事効率化",
   perms: "tabCapture, tabs, offscreen, storage",
+  version: "1.0.1",
+  summaryEN: "Set the volume of each tab independently — boost quiet tabs up to 600%, turn down or mute loud ones, all from one mixer.",
+  summaryJA: "タブごとに音量を個別調整。小さい音は最大600%までブースト、大きい音は下げる/ミュート。ひとつのミキサーでまとめて操作できます。",
+  homepage: "https://informanellica.com",
+  support: "https://github.com/informanellica/ia-audioMixer",
   popupWidth: 340,
   popupHeight: 380,
   zoom: 1.6,
@@ -105,25 +110,59 @@ export async function generate(cfg, mock, root, out) {
   fs.rmSync(path.join(out, "_promo.html"), { force: true });
   fs.rmSync(path.join(out, "_tile.html"), { force: true });
 
-  fs.writeFileSync(path.join(out, "SUBMISSION.md"), `# Submission assets — ${cfg.storeName}
+  // Inline the listing + privacy text so dist/ is fully self-contained.
+  const listing = fs.readFileSync(path.join(root, "store", "listing.md"), "utf8");
+  const privacy = fs.readFileSync(path.join(root, "PRIVACY.md"), "utf8");
+  fs.writeFileSync(path.join(out, "privacy-policy.md"), privacy);
 
-## Package
-- ZIP to upload: \`../${cfg.zip}\`
-
-## Listing
-- Store name: ${cfg.storeName}
-- Category: ${cfg.category}
-- Full listing text (EN + JA): \`../../store/listing.md\`
-- Privacy policy URL: ${cfg.privacy}
-- Permissions to justify: ${cfg.perms}
-
-## Graphic assets (this folder)
-- Store icon 128: \`store-icon-128.png\`
-- Screenshot 1280x800 (no alpha): \`screenshot-1280x800.png\`
-- Promo tile 440x280 (optional): \`promo-tile-440x280.png\`
-
-Regenerate with: \`npm run assets\`
-`);
+  fs.writeFileSync(path.join(out, "SUBMISSION.md"), submissionDoc(cfg, listing));
 
   console.log("store assets ->", out);
+}
+
+// Field-by-field packet mirroring the Chrome Web Store / Edge listing forms,
+// with the full listing text embedded so dist/ needs nothing else.
+function submissionDoc(cfg, listing) {
+  return `# Submission packet — ${cfg.storeName} (v${cfg.version})
+
+Self-contained: every value for the Chrome Web Store / Edge forms is in THIS
+folder. The long Description text is in section D below.
+
+## A. Store listing form
+| Field | Value |
+| --- | --- |
+| Title | ${cfg.storeName} |
+| Summary — EN (<=132) | ${cfg.summaryEN} |
+| Summary — JA (<=132) | ${cfg.summaryJA} |
+| Description | paste "Detailed description" from section D (EN / 日本語) |
+| Category | ${cfg.category} |
+| Language | English (primary); add 日本語 as a second locale |
+| Store icon (128x128) | store-icon-128.png |
+| Screenshots (1280x800) | screenshot-1280x800.png |
+| Promo tile, small (440x280) | promo-tile-440x280.png (optional) |
+| Marquee tile (1400x560) | optional — not provided |
+| Homepage URL | ${cfg.homepage} |
+| Support URL | ${cfg.support} |
+| Mature content | No |
+| Visibility | Public |
+
+## B. Privacy practices tab
+- Single purpose: see section D ("Single purpose" / 単一目的)
+- Permission justifications: see section D ("Permission justifications" / 権限の正当化)
+- Permissions in this build: ${cfg.perms}
+- Uses remote code? No
+- Data collection: none — then tick the 3 certifications (no selling of data,
+  use limited to single purpose, not used for creditworthiness)
+- Privacy policy URL: ${cfg.privacy}
+- Privacy policy text (already hosted; local copy): privacy-policy.md
+
+## C. Package to upload
+- ../${cfg.zip}
+
+---
+
+## D. Listing text — full (EN + JA)
+
+${listing}
+`;
 }
