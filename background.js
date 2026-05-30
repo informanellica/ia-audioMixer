@@ -26,6 +26,21 @@ async function ensureOffscreen() {
   await creatingOffscreen;
 }
 
+// --- Toolbar badge: show the captured tab's volume % on the extension icon ---
+// Per-tab badge: Chrome shows it only while that tab is active.
+function badgeColor(volume) {
+  if (volume === 0) return "#dc3545";   // muted — red
+  if (volume > 1.0) return "#fd7e14";   // boosted — orange
+  return "#0d6efd";                     // normal — blue
+}
+function updateBadge(tabId, volume) {
+  chrome.action.setBadgeText({ tabId, text: String(Math.round(volume * 100)) }).catch(() => {});
+  chrome.action.setBadgeBackgroundColor({ tabId, color: badgeColor(volume) }).catch(() => {});
+}
+function clearBadge(tabId) {
+  chrome.action.setBadgeText({ tabId, text: "" }).catch(() => {});
+}
+
 // Send a message to the offscreen document, tolerating "no receiver" races.
 async function sendToOffscreen(message) {
   try {
@@ -73,6 +88,7 @@ async function startCapture(tabId) {
     return { ok: false, error: res?.error || "audio setup failed" };
   }
 
+  updateBadge(tabId, 1.0);
   return { ok: true };
 }
 
@@ -81,6 +97,7 @@ async function setVolume(tabId, volume) {
   const entry = capturedTabs.get(tabId);
   if (!entry) return { ok: false, error: "tab not captured" };
   entry.volume = volume;
+  updateBadge(tabId, volume);
   await sendToOffscreen({ type: "set-volume", tabId, volume });
   return { ok: true };
 }
@@ -89,6 +106,7 @@ async function setVolume(tabId, volume) {
 async function stopCapture(tabId) {
   if (!capturedTabs.has(tabId)) return { ok: true };
   capturedTabs.delete(tabId);
+  clearBadge(tabId);
   await sendToOffscreen({ type: "stop-capture", tabId });
   return { ok: true };
 }
@@ -112,6 +130,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     case "capture-ended":
       // Offscreen reports a tab's audio track ended on its own.
       capturedTabs.delete(message.tabId);
+      clearBadge(message.tabId);
       return false;
 
     case "popup-get-state": {

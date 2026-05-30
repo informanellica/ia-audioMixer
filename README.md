@@ -81,4 +81,4 @@ captured. See [PRIVACY.md](PRIVACY.md).
 
 ## License
 
-MIT (or your choice — update before publishing).
+MIT — see [LICENSE](LICENSE). © 2026 Informanellica.
