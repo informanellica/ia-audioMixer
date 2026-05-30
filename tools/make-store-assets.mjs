@@ -28,7 +28,7 @@ const CONFIG = {
   summaryEN: "Set the volume of each tab independently — boost quiet tabs up to 600%, turn down or mute loud ones, all from one mixer.",
   summaryJA: "タブごとに音量を個別調整。小さい音は最大600%までブースト、大きい音は下げる/ミュート。ひとつのミキサーでまとめて操作できます。",
   homepage: "https://informanellica.github.io/",
-  support: "https://github.com/informanellica/ia-audioMixer",
+  support: "https://informanellica.github.io/support.html#tab-volume-mixer",
   singlePurpose: "Adjust the audio volume of individual browser tabs.",
   // Store "Description" (16,000 chars) per language — paste into the listing.
   desc: {
