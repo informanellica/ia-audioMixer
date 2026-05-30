@@ -22,7 +22,7 @@ const CONFIG = {
   zip: "ia-audioMixer-v1.0.2.zip",
   uiLocale: "en", // locale used for the top-level SUBMISSION packet
   privacy: "https://informanellica.github.io/ia-audioMixer/PRIVACY",
-  category: "Productivity / 仕事効率化",
+  category: "ツール (Tools) ／ 代替: 機能と UI",
   perms: "tabCapture, tabs, offscreen, storage",
   version: "1.0.2",
   summaryEN: "Set the volume of each tab independently — boost quiet tabs up to 600%, turn down or mute loud ones, all from one mixer.",
