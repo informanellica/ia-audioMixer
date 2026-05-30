@@ -1,0 +1,13 @@
+{
+  "name": "ia-audiomixer",
+  "private": true,
+  "description": "Dev tooling for Tab Volume Mixer (store-asset generation). The extension itself ships no JS dependencies.",
+  "type": "module",
+  "scripts": {
+    "assets": "node tools/make-store-assets.mjs",
+    "build": "bash build.sh"
+  },
+  "devDependencies": {
+    "playwright": "^1.40.0"
+  }
+}

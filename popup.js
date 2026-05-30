@@ -78,19 +78,40 @@ maxVolumeEl.addEventListener("change", async () => {
   loadTabs();
 });
 
-// --- Theme (light / dark) ---
+// --- Theme: default light, follow system, manual override remembered ---
+let manualTheme; // "light" | "dark" | undefined (= follow system)
+
 function applyTheme(theme) {
   document.documentElement.setAttribute("data-bs-theme", theme);
 }
 
+const prefersDark = () =>
+  window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+// Stored manual choice wins; otherwise follow the system; default light.
+function resolveTheme(stored) {
+  if (stored === "light" || stored === "dark") return stored;
+  return prefersDark() ? "dark" : "light";
+}
+
 async function initTheme() {
   const { theme } = await chrome.storage.local.get("theme");
-  applyTheme(theme === "light" ? "light" : "dark");
+  manualTheme = theme;
+  applyTheme(resolveTheme(theme));
+  // Follow OS theme changes while no manual choice is stored.
+  if (window.matchMedia) {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+      if (manualTheme !== "light" && manualTheme !== "dark") {
+        applyTheme(e.matches ? "dark" : "light");
+      }
+    });
+  }
 }
 
 themeToggleEl.addEventListener("click", async () => {
   const current = document.documentElement.getAttribute("data-bs-theme");
   const next = current === "dark" ? "light" : "dark";
+  manualTheme = next;
   applyTheme(next);
   await chrome.storage.local.set({ theme: next });
 });
