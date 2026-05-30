@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "Set the volume of each tab independently — boost quiet tabs up to 600%, mute the loud ones."
+  },
+  "settings": {
+    "message": "Settings"
+  },
+  "toggleTheme": {
+    "message": "Toggle light/dark theme"
+  },
+  "showCaptureBtn": {
+    "message": "Show capture button"
+  },
+  "maxVolume": {
+    "message": "Max volume (boost)"
+  },
+  "noAudible": {
+    "message": "No audible tabs found"
+  },
+  "capture": {
+    "message": "Capture"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "Mute"
+  },
+  "unmute": {
+    "message": "Unmute"
+  },
+  "captureFailed": {
+    "message": "Can't capture this tab. Switch to it (make it active) and try again."
+  },
+  "autoCaptureNote": {
+    "message": "$count$ playing tab(s) couldn't be controlled automatically — switch to a tab to adjust its volume.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

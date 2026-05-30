@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "Réglez le volume de chaque onglet individuellement — amplifiez les onglets faibles jusqu'à 600 % et coupez les bruyants."
+  },
+  "settings": {
+    "message": "Paramètres"
+  },
+  "toggleTheme": {
+    "message": "Basculer thème clair/sombre"
+  },
+  "showCaptureBtn": {
+    "message": "Afficher le bouton de capture"
+  },
+  "maxVolume": {
+    "message": "Volume maximal (amplification)"
+  },
+  "noAudible": {
+    "message": "Aucun onglet audio trouvé"
+  },
+  "capture": {
+    "message": "Capturer"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "Couper le son"
+  },
+  "unmute": {
+    "message": "Réactiver le son"
+  },
+  "captureFailed": {
+    "message": "Impossible de capturer cet onglet. Passez dessus (activez-le) puis réessayez."
+  },
+  "autoCaptureNote": {
+    "message": "Impossible de contrôler automatiquement $count$ onglet(s) en lecture — passez sur un onglet pour régler son volume.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

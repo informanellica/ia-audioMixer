@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "Stelle die Lautstärke jedes Tabs einzeln ein — leise Tabs bis 600 % verstärken, laute stummschalten."
+  },
+  "settings": {
+    "message": "Einstellungen"
+  },
+  "toggleTheme": {
+    "message": "Helles/dunkles Design umschalten"
+  },
+  "showCaptureBtn": {
+    "message": "Aufnahme-Schaltfläche anzeigen"
+  },
+  "maxVolume": {
+    "message": "Maximale Lautstärke (Verstärkung)"
+  },
+  "noAudible": {
+    "message": "Keine Tabs mit Ton gefunden"
+  },
+  "capture": {
+    "message": "Aufnehmen"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "Stummschalten"
+  },
+  "unmute": {
+    "message": "Stummschaltung aufheben"
+  },
+  "captureFailed": {
+    "message": "Dieser Tab kann nicht erfasst werden. Wechsle zu ihm (aktiviere ihn) und versuche es erneut."
+  },
+  "autoCaptureNote": {
+    "message": "$count$ wiedergebende Tab(s) konnten nicht automatisch gesteuert werden — wechsle zu einem Tab, um die Lautstärke anzupassen.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

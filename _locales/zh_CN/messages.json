@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "单独调节每个标签页的音量——将安静的标签页提升至 600%，将吵闹的静音。"
+  },
+  "settings": {
+    "message": "设置"
+  },
+  "toggleTheme": {
+    "message": "切换浅色/深色主题"
+  },
+  "showCaptureBtn": {
+    "message": "显示捕获按钮"
+  },
+  "maxVolume": {
+    "message": "最大音量（增强）"
+  },
+  "noAudible": {
+    "message": "未找到有声音的标签页"
+  },
+  "capture": {
+    "message": "捕获"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "静音"
+  },
+  "unmute": {
+    "message": "取消静音"
+  },
+  "captureFailed": {
+    "message": "无法捕获此标签页。请切换到该标签页（设为活动）后重试。"
+  },
+  "autoCaptureNote": {
+    "message": "有 $count$ 个正在播放的标签页无法自动控制——请切换到该标签页以调节音量。",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

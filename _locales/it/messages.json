@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "Regola il volume di ogni scheda singolarmente: amplifica quelle silenziose fino al 600% e disattiva quelle rumorose."
+  },
+  "settings": {
+    "message": "Impostazioni"
+  },
+  "toggleTheme": {
+    "message": "Attiva/disattiva tema chiaro/scuro"
+  },
+  "showCaptureBtn": {
+    "message": "Mostra pulsante di cattura"
+  },
+  "maxVolume": {
+    "message": "Volume massimo (boost)"
+  },
+  "noAudible": {
+    "message": "Nessuna scheda con audio trovata"
+  },
+  "capture": {
+    "message": "Cattura"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "Disattiva audio"
+  },
+  "unmute": {
+    "message": "Riattiva audio"
+  },
+  "captureFailed": {
+    "message": "Impossibile catturare questa scheda. Passa a essa (rendila attiva) e riprova."
+  },
+  "autoCaptureNote": {
+    "message": "Impossibile controllare automaticamente $count$ scheda/e in riproduzione: passa a una scheda per regolarne il volume.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

@@ -19,7 +19,8 @@ $include = @(
   'offscreen.js',
   'popup.html',
   'popup.js',
-  'icons'
+  'icons',
+  '_locales'
 )
 
 # Fail early if anything expected is missing.

@@ -7,6 +7,25 @@ const settingsPanelEl = document.getElementById("settings-panel");
 const captureBtnToggleEl = document.getElementById("toggle-capture-btn");
 const maxVolumeEl = document.getElementById("max-volume");
 
+// --- i18n: fill static markup and expose a getter for dynamic strings ---
+const t = (key, subs) => chrome.i18n.getMessage(key, subs);
+
+function applyI18n() {
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const m = t(el.dataset.i18n);
+    if (m) el.textContent = m;
+  });
+  document.querySelectorAll("[data-i18n-title]").forEach((el) => {
+    const m = t(el.dataset.i18nTitle);
+    if (m) el.title = m;
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    const m = t(el.dataset.i18nAria);
+    if (m) el.setAttribute("aria-label", m);
+  });
+}
+applyI18n();
+
 // Default ceiling for the volume slider (percent). Configurable via settings.
 const DEFAULT_MAX_VOLUME = 500;
 let maxVolume = DEFAULT_MAX_VOLUME;
@@ -145,10 +164,7 @@ async function loadTabs() {
     const failed = results.filter((r) => !r || !r.ok).length;
     if (failed > 0) {
       // Expected for background tabs: tabCapture only allows the active tab.
-      showStatus(
-        `${failed} playing tab${failed > 1 ? "s" : ""} couldn't be controlled automatically — ` +
-          `switch to a tab to adjust its volume.`
-      );
+      showStatus(t("autoCaptureNote", [String(failed)]));
     } else {
       showStatus("");
     }
@@ -195,10 +211,10 @@ function renderTab(tab, isCaptured, volume) {
     <div class="tab-info">
       ${tab.favIconUrl ? `<img class="tab-favicon" src="${tab.favIconUrl}" alt="">` : `<div class="tab-favicon"></div>`}
       <span class="tab-title" title="${escapeHtml(tab.title)}">${escapeHtml(tab.title)}</span>
-      <button class="capture-btn ${isCaptured ? "active" : ""}">${isCaptured ? "ON" : "Capture"}</button>
+      <button class="capture-btn ${isCaptured ? "active" : ""}">${isCaptured ? t("on") : t("capture")}</button>
     </div>
     <div class="tab-controls" style="${isCaptured ? "" : "opacity: 0.4; pointer-events: none;"}">
-      <button class="mute-btn ${isMuted ? "muted" : ""}" title="${isMuted ? "Unmute" : "Mute"}">${isMuted ? "🔇" : volume > 0.5 ? "🔊" : "🔈"}</button>
+      <button class="mute-btn ${isMuted ? "muted" : ""}" title="${isMuted ? t("unmute") : t("mute")}">${isMuted ? "🔇" : volume > 0.5 ? "🔊" : "🔈"}</button>
       <input type="range" class="volume-slider ${isBoosted ? "boosted" : ""}" min="0" max="${sliderMax}" value="${percentage}">
       <span class="volume-value ${isBoosted ? "boosted" : ""}">${percentage}%</span>
     </div>
@@ -217,16 +233,15 @@ function renderTab(tab, isCaptured, volume) {
       const res = await send({ type: "popup-start-capture", tabId: tab.id });
       if (!res?.ok) {
         // tabCapture refused (e.g. not the active tab, or a chrome:// page)
-        captureBtn.textContent = "Capture";
+        captureBtn.textContent = t("capture");
         captureBtn.disabled = false;
-        captureBtn.title =
-          "Can't capture this tab. Switch to it (make it active) and try again.";
+        captureBtn.title = t("captureFailed");
         return;
       }
       captureBtn.title = "";
       // Short delay for offscreen to initialize
       setTimeout(() => {
-        captureBtn.textContent = "ON";
+        captureBtn.textContent = t("on");
         captureBtn.classList.add("active");
         captureBtn.disabled = false;
         controls.style.opacity = "";
@@ -235,7 +250,7 @@ function renderTab(tab, isCaptured, volume) {
       }, 300);
     } else {
       await send({ type: "popup-stop-capture", tabId: tab.id });
-      captureBtn.textContent = "Capture";
+      captureBtn.textContent = t("capture");
       captureBtn.classList.remove("active");
       controls.style.opacity = "0.4";
       controls.style.pointerEvents = "none";

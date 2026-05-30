@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "タブごとに音量を個別に調整。小さい音は最大600%までブースト、大きい音はミュート。"
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "toggleTheme": {
+    "message": "ライト/ダークテーマ切替"
+  },
+  "showCaptureBtn": {
+    "message": "キャプチャボタンを表示"
+  },
+  "maxVolume": {
+    "message": "最大音量(ブースト)"
+  },
+  "noAudible": {
+    "message": "再生中のタブがありません"
+  },
+  "capture": {
+    "message": "キャプチャ"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "ミュート"
+  },
+  "unmute": {
+    "message": "ミュート解除"
+  },
+  "captureFailed": {
+    "message": "このタブはキャプチャできません。タブを切り替えて(アクティブにして)もう一度お試しください。"
+  },
+  "autoCaptureNote": {
+    "message": "$count$個の再生中タブを自動制御できませんでした。タブを切り替えて音量を調整してください。",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

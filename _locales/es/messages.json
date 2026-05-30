@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "Ajusta el volumen de cada pestaña por separado: amplifica las silenciosas hasta el 600 % y silencia las ruidosas."
+  },
+  "settings": {
+    "message": "Configuración"
+  },
+  "toggleTheme": {
+    "message": "Cambiar tema claro/oscuro"
+  },
+  "showCaptureBtn": {
+    "message": "Mostrar botón de captura"
+  },
+  "maxVolume": {
+    "message": "Volumen máximo (refuerzo)"
+  },
+  "noAudible": {
+    "message": "No se encontraron pestañas con sonido"
+  },
+  "capture": {
+    "message": "Capturar"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "Silenciar"
+  },
+  "unmute": {
+    "message": "Activar sonido"
+  },
+  "captureFailed": {
+    "message": "No se puede capturar esta pestaña. Cámbiate a ella (actívala) e inténtalo de nuevo."
+  },
+  "autoCaptureNote": {
+    "message": "No se pudieron controlar automáticamente $count$ pestaña(s) en reproducción: cambia a una pestaña para ajustar su volumen.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

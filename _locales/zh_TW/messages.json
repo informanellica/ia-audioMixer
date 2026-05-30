@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "個別調整每個分頁的音量——將安靜的分頁提升至 600%，將吵雜的靜音。"
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "toggleTheme": {
+    "message": "切換淺色/深色主題"
+  },
+  "showCaptureBtn": {
+    "message": "顯示擷取按鈕"
+  },
+  "maxVolume": {
+    "message": "最大音量（增強）"
+  },
+  "noAudible": {
+    "message": "找不到有聲音的分頁"
+  },
+  "capture": {
+    "message": "擷取"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "靜音"
+  },
+  "unmute": {
+    "message": "取消靜音"
+  },
+  "captureFailed": {
+    "message": "無法擷取此分頁。請切換到該分頁（設為使用中）後再試一次。"
+  },
+  "autoCaptureNote": {
+    "message": "有 $count$ 個正在播放的分頁無法自動控制——請切換到該分頁以調整音量。",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

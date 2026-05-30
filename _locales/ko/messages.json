@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "탭마다 볼륨을 개별 조절하세요 — 조용한 탭은 최대 600%까지 증폭하고 시끄러운 탭은 음소거."
+  },
+  "settings": {
+    "message": "설정"
+  },
+  "toggleTheme": {
+    "message": "밝은/어두운 테마 전환"
+  },
+  "showCaptureBtn": {
+    "message": "캡처 버튼 표시"
+  },
+  "maxVolume": {
+    "message": "최대 볼륨(부스트)"
+  },
+  "noAudible": {
+    "message": "소리 나는 탭이 없습니다"
+  },
+  "capture": {
+    "message": "캡처"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "음소거"
+  },
+  "unmute": {
+    "message": "음소거 해제"
+  },
+  "captureFailed": {
+    "message": "이 탭은 캡처할 수 없습니다. 해당 탭으로 전환(활성화)한 후 다시 시도하세요."
+  },
+  "autoCaptureNote": {
+    "message": "재생 중인 탭 $count$개를 자동으로 제어하지 못했습니다 — 탭으로 전환하여 볼륨을 조절하세요.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

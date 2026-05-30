@@ -22,6 +22,7 @@ include=(
   popup.html
   popup.js
   icons
+  _locales
 )
 
 # Fail early if anything expected is missing.

@@ -1,0 +1,46 @@
+{
+  "appName": {
+    "message": "Tab Volume Mixer"
+  },
+  "appDesc": {
+    "message": "Ajuste o volume de cada aba individualmente — aumente as silenciosas até 600% e silencie as barulhentas."
+  },
+  "settings": {
+    "message": "Configurações"
+  },
+  "toggleTheme": {
+    "message": "Alternar tema claro/escuro"
+  },
+  "showCaptureBtn": {
+    "message": "Mostrar botão de captura"
+  },
+  "maxVolume": {
+    "message": "Volume máximo (reforço)"
+  },
+  "noAudible": {
+    "message": "Nenhuma aba com áudio encontrada"
+  },
+  "capture": {
+    "message": "Capturar"
+  },
+  "on": {
+    "message": "ON"
+  },
+  "mute": {
+    "message": "Silenciar"
+  },
+  "unmute": {
+    "message": "Reativar som"
+  },
+  "captureFailed": {
+    "message": "Não é possível capturar esta aba. Mude para ela (deixe-a ativa) e tente novamente."
+  },
+  "autoCaptureNote": {
+    "message": "Não foi possível controlar automaticamente $count$ aba(s) em reprodução — mude para uma aba para ajustar o volume.",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  }
+}

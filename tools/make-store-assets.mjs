@@ -17,14 +17,15 @@ const OUT = path.join(ROOT, "dist", "store-assets");
 
 const CONFIG = {
   storeName: "Tab Volume Mixer",
-  zip: "ia-audioMixer-v1.0.1.zip",
+  zip: "ia-audioMixer-v1.0.2.zip",
+  uiLocale: "en",
   head: "Per-tab volume control",
   sub: "Boost quiet tabs up to 600%.\nMute the loud ones. One simple mixer.",
   jp: false,
   privacy: "https://informanellica.github.io/ia-audioMixer/PRIVACY",
   category: "Productivity / 仕事効率化",
   perms: "tabCapture, tabs, offscreen, storage",
-  version: "1.0.1",
+  version: "1.0.2",
   summaryEN: "Set the volume of each tab independently — boost quiet tabs up to 600%, turn down or mute loud ones, all from one mixer.",
   summaryJA: "タブごとに音量を個別調整。小さい音は最大600%までブースト、大きい音は下げる/ミュート。ひとつのミキサーでまとめて操作できます。",
   homepage: "https://informanellica.com",
@@ -90,10 +91,16 @@ export async function generate(cfg, mock, root, out) {
   fs.writeFileSync(path.join(out, "_promo.html"), promo);
   fs.writeFileSync(path.join(out, "_tile.html"), tile);
 
+  // chrome.i18n mock so the real popup renders localized strings.
+  const msgsRaw = JSON.parse(fs.readFileSync(path.join(root, "_locales", cfg.uiLocale, "messages.json"), "utf8"));
+  const flat = {};
+  for (const k in msgsRaw) flat[k] = msgsRaw[k].message;
+  const i18nMock = `(()=>{const M=${JSON.stringify(flat)};window.chrome=window.chrome||{};window.chrome.i18n={getMessage:(k,subs)=>{let s=(M[k]||"");if(subs!=null){const a=[].concat(subs);let i=0;s=s.replace(/\\$\\w+\\$/g,()=>a[i++]??"");}return s;}};})();`;
+
   const browser = await chromium.launch({ channel: "chrome" });
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1 });
   const page = await ctx.newPage();
-  await page.addInitScript({ content: mock });
+  await page.addInitScript({ content: mock + "\n" + i18nMock });
 
   await page.goto(pathToFileURL(path.join(out, "_promo.html")).href);
   await page.waitForTimeout(700);
